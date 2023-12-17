@@ -1,0 +1,11 @@
+spring:
+  kafka:
+    consumer:
+      bootstrap-servers: kafka:9092  # Kafka broker address (same as the producer)
+      group-id: my-consumer-group     # Consumer group ID
+      auto-offset-reset: earliest     # What to do when there is no initial offset
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      default-topic: my-topic
+    listener:
+      missing-topics-fatal: false     # Set to true to fail on startup if the topic is not present

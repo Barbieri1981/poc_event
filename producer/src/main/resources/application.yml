@@ -1,0 +1,11 @@
+spring:
+  kafka:
+    producer:
+      ##bootstrap-servers: localhost:9092
+      bootstrap-servers: kafka:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    template:
+      default-topic: my-topic
+  config:
+    import: classpath:error-message.yml
