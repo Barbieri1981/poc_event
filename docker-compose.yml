@@ -3,19 +3,28 @@ version: '3.8'
 services:
   producer:
     build: ./producer
+    environment:
+      - SERVER_PORT=8080
     ports:
       - "8080:8080"
     depends_on:
       - kafka
 
   consumer:
-    build:
-      context: ./consumer
-      dockerfile: Dockerfile
+    build: ./consumer
+    environment:
+      - SERVER_PORT=8081
     ports:
       - "8081:8081"
     depends_on:
       - kafka
+
+  security:
+    build: ./security
+    environment:
+      - SERVER_PORT=8082
+    ports:
+      - "8082:8082"
 
   kafka:
     image: wurstmeister/kafka
