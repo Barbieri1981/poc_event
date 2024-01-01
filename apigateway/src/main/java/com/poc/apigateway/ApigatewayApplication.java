@@ -1,4 +1,4 @@
-package com.poc.consumer;
+package com.poc.apigateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class ConsumerApplication {
+public class ApigatewayApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ConsumerApplication.class, args);
+		SpringApplication.run(ApigatewayApplication.class, args);
 	}
 
 }

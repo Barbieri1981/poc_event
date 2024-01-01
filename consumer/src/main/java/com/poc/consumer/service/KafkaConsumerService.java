@@ -15,12 +15,14 @@ public class KafkaConsumerService {
 
     private final KafkaProperties kafkaProperties;
     private final EventDeserializer eventDeserializer;
+    private final EventService eventService;
 
     @KafkaListener(topics = "#{kafkaProperties.defaultTopic}", groupId = "#{kafkaProperties.groupId}")
     public void consume(String message) {
         try {
             EventResponseDTO event = eventDeserializer.deserializeJson(message);
             log.info("Received DTO event in group '{}': {}", kafkaProperties.getGroupId(), event);
+            eventService.saveEvent(event);
         } catch (Exception e) {
             log.info("Received non-DTO message in group '{}': {}", kafkaProperties.getGroupId(), message);
         }

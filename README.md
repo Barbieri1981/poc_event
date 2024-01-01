@@ -3,6 +3,11 @@
 ## Overview
 This project demonstrates a Spring Boot application integrated with Apache Kafka to handle event publishing.
 
+## Project Architecture Diagram
+
+![POC Architecture Diagram](diagrams/POC-Page-7.jpg)
+
+
 ## Features
 - Spring Boot 3.2.0 with Java 17.
 - Apache Kafka integration using Spring Kafka.
@@ -111,12 +116,30 @@ The script performs the following actions:
 Before running the script. Change the file's mode to executable.   
 
 ```bash
-chmod +x docker-restart.sh
+chmod +x script.sh
+```
+
+```bash
+chmod +x docker-clean.sh
 ```
 
 After making the script executable, run it to set up your Docker environment.   
+
 ```bash
-sudo ./docker-restart.sh
+sudo ./docker-clean.sh
+```
+
+Para iniciar los servicios:    
+```bash
+sudo ./script.sh start
+```
+Para detener los servicios:    
+```bash
+sudo ./script.sh stop
+```
+Para ver los logs de los servicios:   
+```bash
+sudo ./script.sh logs
 ```
 
 ## Viewing Logs

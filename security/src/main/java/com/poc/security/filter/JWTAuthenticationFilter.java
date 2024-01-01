@@ -6,7 +6,6 @@ import com.poc.security.dto.request.AuthenticationRequestDTO;
 import com.poc.security.dto.response.AuthenticationResponseDTO;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -26,6 +25,8 @@ import java.time.Instant;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.stream.Collectors;
+
+import static com.poc.security.constants.Constants.SECRET_KEY;
 
 @Slf4j
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
@@ -75,7 +76,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 				.setSubject(((User) auth.getPrincipal()).getUsername())
 				.claim(Constants.AUTHORITIES_KEY, authorities)
 				.setExpiration(expiration)
-				.signWith(SignatureAlgorithm.HS512, Keys.secretKeyFor(SignatureAlgorithm.HS512))
+				.signWith(SignatureAlgorithm.HS512, SECRET_KEY)
 				.compact();
 
 		log.info("JWT token generated successfully for user: {}", ((User) auth.getPrincipal()).getUsername());

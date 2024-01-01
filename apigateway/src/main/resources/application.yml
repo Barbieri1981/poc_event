@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: producer-route
+          uri: lb://producer-service  # Redirige a 'producer-service'
+          predicates:
+            - Path=/producer/**  # Rutas para 'producer-service'
+          filters:
+            - AuthorizationHeaderFilter
+            - StripPrefix=1
+
+        - id: security-route
+          uri: lb://security-service  # Redirige a 'security-service'
+          predicates:
+            - Path=/security/**  # Rutas para 'security-service'
+          filters:
+            - StripPrefix=1
+
+        - id: consumer-route
+          uri: lb://consumer-service  # Redirige a 'consumer-service'
+          predicates:
+            - Path=/consumer/**  # Rutas para 'consumer-service'
+          filters:
+            - StripPrefix=1
+
+    discovery:
+      locator:
+        enabled: true  # Habilita el descubrimiento de servicios a través de Eureka
+
+error-messages:
+  unauthorized:
+    code: "Unauthorized"
+    message: "Invalid or expired token"

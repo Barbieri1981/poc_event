@@ -17,4 +17,6 @@ public final class Constants {
 	public static final long TOKEN_EXPIRATION_TIME = 900; // 15 minutes
 	public static final String AUTHORITIES_KEY = "auth";
 	public static final String ROLE = "ROLE_";
+
+	public static final String SECRET_KEY ="a2Fma2EgcG9jIGV2ZW50b3NkczBIdE5pT05ocnlIYlNnbDRfdTNyWmdHd0lmS2IzMXpnMFNEdXJySXlVeTdGd2hEdHpTU1RNa1Z5blpCSkk=";
 }
